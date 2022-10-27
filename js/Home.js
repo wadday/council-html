@@ -53,6 +53,11 @@ const Home = {
         }
     },
 
+    created() {
+        $('document').ready(function() {
+            $('.select2').select2();
+        })
+    },
     mounted() {
         this.form.group_id = this.group
     },
