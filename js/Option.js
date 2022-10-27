@@ -3,7 +3,12 @@ const Option = {
     template: `
     <div class="rounded-lg border shadow-lg border-gray-100 bg-white p-3">
      <div class="p-4 bg-gray-100 rounded-lg shadow-lg border">
+     <div class="flex items-center justify-between">
       <h1 class="mb-5 font-semibold text-lg">Add New</h1>
+      <span>
+      {{ group }}
+</span>
+    </div>
          <form class="space-y-6" @submit.prevent="save">
              <div>
                   <label for="name" class="block text-sm font-medium text-gray-700">Subject/Title</label>
@@ -70,13 +75,20 @@ const Option = {
     pinia: Pinia.createPinia(),
     computed: {
         ...Pinia.mapState(useOptionsStore, ['options']),
-        ...Pinia.mapState(useGroupsStore, ['options']),
+        ...Pinia.mapState(useGroupsStore, ['items']),
         items() {
             if (Array.isArray(this.options)) {
                 return this.options.filter(itm => itm.group_id === this.form.group_id)
             }
 
             return []
+        },
+        group() {
+            if (Array.isArray(this.items) && this.items.length) {
+                return  this.items.find(itm => itm.id === this.$route.params.id)
+            }
+
+            return {}
         }
     },
     methods: {
