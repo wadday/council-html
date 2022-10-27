@@ -26,8 +26,8 @@ const routes = [
 const router = VueRouter.createRouter({
     history: VueRouter.createWebHashHistory(),
     routes, // short for `routes: routes`
-    linkActiveClass: 'text-white ',
-    linkExactActiveClass: 'text-white ',
+    linkActiveClass: 'text-blue-500 ',
+    linkExactActiveClass: 'text-blue-500 ',
 })
 
 const pinia = Pinia.createPinia()

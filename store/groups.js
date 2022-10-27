@@ -5,23 +5,17 @@ const useGroupsStore = Pinia.defineStore({
     }),
 
     actions: {
-        saveGroup(form) {
+        saveGroup(name) {
             let uid = new ShortUniqueId();
             this.items.push({
                 id: uid(),
-                name: form.name,
-                start: form.start,
-                end: form.end,
-                seen: form.seen,
+                name: name,
             })
         },
 
         updateGroup(item) {
             let index = this.items.findIndex(itm => itm.id === item.id)
             this.items[index].name = item.name
-            this.items[index].seen = item.seen
-            this.items[index].start = item.start
-            this.items[index].end = item.end
         },
 
         deleteGroup(id) {

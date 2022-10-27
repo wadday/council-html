@@ -1,7 +1,7 @@
 const Readers = {
     template: `
     <div class="fixed bg-black bg-opacity-80 h-screen w-screen top-0 left-0" v-if="dark"></div>
-    <div class="relative z-40 bg-white p-6 rounded-lg bg-opacity-50 backdrop-blur" :class="darkClass">
+    <div class="relative z-40 bg-white p-6 rounded-lg" :class="darkClass">
     <div class="mb-3 flex w-full items-center justify-between">
       <router-link to="/" class="inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-1 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -53,7 +53,7 @@ const Readers = {
       :disabled="item.completed" 
       type="button" 
       class="flex justify-center rounded-full border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-gray-400"
-      >Update</button>
+      >Done</button>
       </div>
     </div>
     </div>

@@ -1,7 +1,7 @@
 
 const Option = {
     template: `
-    <div class="rounded-lg border shadow-lg border-gray-100 bg-white bg-opacity-50 backdrop-blur border-opacity-40 p-3">
+    <div class="rounded-lg border shadow-lg border-gray-100 bg-white p-3">
      <div class="p-4 bg-gray-100 rounded-lg shadow-lg border">
       <h1 class="mb-5 font-semibold text-lg">Add New</h1>
          <form class="space-y-6" @submit.prevent="save">
@@ -70,6 +70,7 @@ const Option = {
     pinia: Pinia.createPinia(),
     computed: {
         ...Pinia.mapState(useOptionsStore, ['options']),
+        ...Pinia.mapState(useGroupsStore, ['options']),
         items() {
             if (Array.isArray(this.options)) {
                 return this.options.filter(itm => itm.group_id === this.form.group_id)
