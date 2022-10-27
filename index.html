@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <title>Council</title>
+  <script src="./js/short-unique-id.min.js"></script>
+  <script src="./js/vue.global.prod.js"></script>
+  <script src="./js/tailwindcss-3.2.1.js?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <script src="./js/vue-demi.iife.js"></script>
+  <script src="./js/pinia.iife.js"></script>
+  <script src="./js/vue-router.global.prod.js"></script>
+  <script src="./js/lodash.min.js"></script>
+
+</head>
+<body class="h-full bg-slate-100"
+      style="background-image:url('./img/bg.jpg');background-size: cover;background-position: bottom;background-attachment: fixed;"
+>
+<div id="app" class="h-full bg-black bg-opacity-50 backdrop-blur-sm ">
+  <div class="min-h-full relative">
+    <nav class="bg-white bg-opacity-50 backdrop-blur">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 justify-between">
+          <div class="flex">
+            <div class="flex flex-shrink-0 items-center">
+              <img class="h-8 w-auto"
+                   src="./img/logo.png" alt="Your Company">
+            </div>
+            <div class="-my-px ml-6 flex space-x-8">
+              <router-link
+                  class="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium"
+                  to="/">Dashboard</router-link>
+
+              <router-link
+                  class="text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium"
+                  to="/config">Config</router-link>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="py-4">
+      <main>
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <!-- Replace with your content -->
+          <div class="px-4 py-0 sm:px-0">
+              <router-view></router-view>
+          </div>
+          <!-- /End replace -->
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<script src="./store/theme.js"></script>
+<script src="./store/home.js"></script>
+<script src="./store/options.js"></script>
+<script src="./store/groups.js"></script>
+<script src="./js/Option.js"></script>
+<script src="./js/Group.js"></script>
+<script src="./js/Readers.js"></script>
+<script src="./js/Home.js"></script>
+<script src="./js/app.js"></script>
+</body>
+</html>
