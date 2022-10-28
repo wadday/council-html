@@ -27,7 +27,7 @@ const Option = {
                 <label for="description" class="block text-sm font-medium text-gray-700 text-right">Descriptions</label>
                 <div class="mt-1">
                   <textarea id="description" 
-                  v-model="form.description" dir="rtl" required rows="20" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-2xl placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  v-model="form.description" dir="rtl" required rows="20" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-2xl leading-relaxed tracking-wider placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                   placeholder="Descriptions"
                   ></textarea>
                 </div>
