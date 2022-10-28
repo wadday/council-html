@@ -21,6 +21,11 @@ const routes = [
         name: 'config-options',
         component: Option,
     },
+    {
+        path: '/storage',
+        name: 'storage-db',
+        component: Storage,
+    },
 ]
 
 const router = VueRouter.createRouter({

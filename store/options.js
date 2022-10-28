@@ -37,6 +37,10 @@ const useOptionsStore = Pinia.defineStore({
             _.remove(this.options, function(item) {
                 return item.group_id === groupId
             });
+        },
+
+        uploadOptions(options) {
+            this.options = options
         }
     },
 

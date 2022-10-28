@@ -21,6 +21,10 @@ const useGroupsStore = Pinia.defineStore({
         deleteGroup(id) {
             let index = this.items.findIndex(itm => itm.id === id)
             this.items.splice(index, 1)
+        },
+
+        uploadGroups(items) {
+            this.items = items
         }
     }
 })
