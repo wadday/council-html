@@ -87,6 +87,7 @@ const Storage = {
                 this.uploadOptions(data.items)
             }
 
+            window.location.reload()
         },
 
         downloadFile(filename, text) {
