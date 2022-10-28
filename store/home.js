@@ -5,8 +5,8 @@ const useHomeStore = Pinia.defineStore({
     }),
 
     actions: {
-        selectGroup(e) {
-            this.group = e.target.value
+        selectGroup(groupId) {
+            this.group = groupId
         },
         deselectGroup() {
             this.group = null

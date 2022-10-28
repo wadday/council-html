@@ -6,8 +6,8 @@ const Option = {
      <div class="flex items-center justify-between">
       <h1 class="mb-5 font-semibold text-lg">Add New</h1>
       <span>
-      {{ group }}
-</span>
+        <h3 class="font-semibold text-lg">{{ group.name }}</h3>
+      </span>
     </div>
          <form class="space-y-6" @submit.prevent="save">
              <div>
@@ -17,6 +17,8 @@ const Option = {
                             type="text" 
                             name="name" 
                             id="name" 
+                            required
+                            dir="rtl"
                             class="block p-3 w-full border-0 border-b border-transparent bg-gray-50 focus:border-indigo-600 focus:ring-0 sm:text-sm" 
                             placeholder="Subject / title">
                   </div>
@@ -25,7 +27,7 @@ const Option = {
                 <label for="description" class="block text-sm font-medium text-gray-700 text-right">Descriptions</label>
                 <div class="mt-1">
                   <textarea id="description" 
-                  v-model="form.description" dir="rtl" required="" rows="20" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-2xl placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  v-model="form.description" dir="rtl" required rows="20" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-2xl placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Descriptions"
                   ></textarea>
                 </div>
@@ -40,7 +42,7 @@ const Option = {
      <h1 class="text-lg font-semibold">List</h1>
      <ul role="list" class="divide-y divide-gray-200 space-y-1">
           <li v-if="items.length === 0" class="text-gray-400">No item available</li>
-          <li v-for="(item, i) in items" :key="item.id" 
+          <li v-for="(item, i) in optionItems" :key="item.id" 
           class="relative py-5 px-4 rounded-lg bg-white bg-opacity-50 hover:bg-gray-50 hover:bg-opacity-40">
             <div class="flex justify-between space-x-3">
               <div class="min-w-0 flex-1">
@@ -76,7 +78,7 @@ const Option = {
     computed: {
         ...Pinia.mapState(useOptionsStore, ['options']),
         ...Pinia.mapState(useGroupsStore, ['items']),
-        items() {
+        optionItems() {
             if (Array.isArray(this.options)) {
                 return this.options.filter(itm => itm.group_id === this.form.group_id)
             }
@@ -84,20 +86,16 @@ const Option = {
             return []
         },
         group() {
-            if (Array.isArray(this.items) && this.items.length) {
-                return  this.items.find(itm => itm.id === this.$route.params.id)
-            }
-
-            return {}
+            return this.items.find(itm => itm.id === this.$route.params.id)
         }
     },
     methods: {
         ...Pinia.mapActions(useOptionsStore, ['saveOption', 'updateOption', 'deleteOption']),
         save() {
 
-            if (this.form.id && this.form.description) {
+            if (this.form.id && this.form.title && this.form.description) {
                 this.update(this.form)
-            } else if (this.form.description) {
+            } else if (this.form.title && this.form.description) {
                 this.saveOption(this.form)
             } else {
                 alert('Fill the required fields')

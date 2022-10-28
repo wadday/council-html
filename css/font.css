@@ -1,0 +1,31 @@
+@font-face {
+    font-family: MV Waheed;
+    src: local("MV Waheed"), local("MVWaheed"), url(../fonts/MVWaheed.woff2) format("woff2"), url(../fonts/MVWaheed.woff) format("woff");
+    font-weight: 400
+}
+
+@font-face {
+    font-family: MV Faseyha;
+    src: local("MV Faseyha"), local("MVFaseyhaMhr"), url(../fonts/MVFaseyhaMhr.woff2) format("woff2"), url(../fonts/MVFaseyhaMhr.woff) format("woff");
+    font-weight: 400
+}
+
+@font-face {
+    font-family: Traditional Arabic Regular;
+    src: local("Arabic"), local("Arabic"), url(../fonts/Arabic.ttf) format("ttf");
+    font-weight: 400
+}
+
+.font-arabic {
+    font-family: Traditional Arabic, Arial, serif;
+    font-style: normal !important;
+    direction: rtl;
+    -webkit-font-smoothing:antialiased;
+}
+
+.font-thaana {
+    font-style: normal !important;
+    font-family: "MV Faseyha", serif;
+    -webkit-font-smoothing:antialiased;
+    direction: rtl;
+}

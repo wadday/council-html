@@ -2,12 +2,16 @@ const useThemeStore = Pinia.defineStore({
     id: 'theme',
     state: () => ({
         dark: false,
-        fontSize: 2,
+        fontSize: 5,
+        bold: false,
     }),
 
     actions: {
         toggle() {
             this.dark = !this.dark
+        },
+        toggleWeight() {
+            this.bold = !this.bold
         },
 
         fontSizeIncrease() {

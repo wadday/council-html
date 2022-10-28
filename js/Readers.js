@@ -1,7 +1,7 @@
 const Readers = {
     template: `
-    <div class="fixed bg-black bg-opacity-80 h-screen w-screen top-0 left-0" v-if="dark"></div>
-    <div class="relative z-40 bg-white p-6 rounded-lg" :class="darkClass">
+    <div class="fixed bg-gray-800 h-screen w-screen top-0 left-0" v-if="dark"></div>
+    <div class="relative z-40 p-6 rounded-lg" :class="darkClass">
     <div class="mb-3 flex w-full items-center justify-between">
       <router-link to="/" class="inline-flex items-center rounded-full border border-transparent bg-indigo-600 p-1 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -10,31 +10,42 @@ const Readers = {
     </router-link>
     <div class="flex items-center space-x-3">
       <button
-              class="rounded-full border border-transparent bg-gray-300 py-1 px-2 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-500 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
+              class="rounded-full border border-transparent bg-indigo-600 py-1 px-2 text-sm font-medium text-gray-100 shadow-sm hover:bg-indigo-700 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
               @click="toggle"
-              >Dark/Light</button>
+              >
+              <span v-if="dark">Light</span>
+              <span v-else>Dark</span>
+              </button>
+              <button
+              class="rounded-full border border-transparent bg-indigo-600 py-1 px-2 text-sm font-medium text-gray-100 shadow-sm hover:bg-indigo-700 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
+              @click="toggleWeight"
+              >
+              <span v-if="bold">Weak</span>
+              <span v-else>Strong</span>
+              </button>
+              
               <div class="flex justify-between items-center">
                   <span class="mr-5">Font Size</span>
                   <div class="flex space-x-3 items-center">
                   <button
-                  class="rounded-full border border-transparent bg-gray-300 py-1 px-3 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-500 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
+                  class="rounded-full border border-transparent bg-indigo-600 py-1 px-3 text-sm font-medium text-gray-100 shadow-sm hover:bg-indigo-700 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
                   @click="fontSizeDecrease"
                   >-</button><span>{{ fontSize }}</span>
                   <button
-                  class="rounded-full border border-transparent bg-gray-300 py-1 px-3 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-500 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
+                  class="rounded-full border border-transparent bg-indigo-600 py-1 px-3 text-sm font-medium text-gray-100 shadow-sm hover:bg-indigo-700 hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-1"
                   @click="fontSizeIncrease"
                   >+</button>
                   </div>
               </div>
     </div>
     </div>
-    <div class="mb-2">
-    <h2 dir="rtl" class="text-2xl">{{ item.title }}</h2>
+    <div class="mb-2 py-3">
+      <h2 class="text-2xl font-thaana">{{ item.title }}</h2>
     </div>
     <div class="rounded-lg shadow-lg shadow-white/20 border border-gray-200 border-opacity-40 p-3" :class="{'!border-gray-500': dark}">
      <div class="p-4">
         <div>
-          <p v-html="replace(item.description)" class="text-right leading-loose" :class="fontClass" />
+          <p class="text-right leading-snug font-arabic" :class="[fontClass, fontBold]">{{ item.description }}</p>
         </div>
      </div>
      <div class="flex items-center justify-end space-x-3">
@@ -71,7 +82,7 @@ const Readers = {
 
     computed: {
         ...Pinia.mapState(useOptionsStore, ['options']),
-        ...Pinia.mapState(useThemeStore, ['dark', 'fontSize']),
+        ...Pinia.mapState(useThemeStore, ['dark', 'fontSize', 'bold']),
         item() {
             return this.form.option_id ? this.options.find(itm => itm.id === this.form.option_id) : null
         },
@@ -91,17 +102,23 @@ const Readers = {
                 'text-8xl': this.fontSize === 10,
             }
         },
+        fontBold() {
+            return {
+                'font-semibold': this.bold
+            }
+        },
 
         darkClass() {
             return {
-                'dark:bg-gray-900/10 dark:text-gray-300': this.dark
+                'dark:bg-gray-800 dark:text-gray-300': this.dark,
+                'bg-white': !this.dark,
             }
         }
     },
 
     methods: {
         ...Pinia.mapActions(useOptionsStore, ['completed']),
-        ...Pinia.mapActions(useThemeStore, ['toggle', 'fontSizeIncrease', 'fontSizeDecrease']),
+        ...Pinia.mapActions(useThemeStore, ['toggle', 'toggleWeight', 'fontSizeIncrease', 'fontSizeDecrease']),
 
         replace(value) {
             if (value) {

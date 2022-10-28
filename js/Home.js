@@ -4,7 +4,7 @@ const Home = {
      <div class="p-4">
          <div class="max-w-sm">
               <label for="group" class="block text-sm font-medium text-gray-700">Group</label>
-              <select v-model="form.group_id" @change="selectGroup" id="group" class="select2 mt-1 block px-2 w-full rounded-md border border-gray-200 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm">
+              <select v-model="form.group_id" id="group" class="select2 mt-1 block px-2 w-full rounded-md border border-gray-200 py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm">
                 <option :value="null" :key="'none'">---</option>
                 <option v-for="item in items" :key="item.id" :value="item.id">{{ item.name }}</option>
               </select>
@@ -52,14 +52,23 @@ const Home = {
             return []
         }
     },
+    watch: {
+        form(v) {
+            console.log(v.group_id)
+        }
+    },
 
     created() {
         $('document').ready(function() {
             $('.select2').select2();
         })
     },
+
     mounted() {
         this.form.group_id = this.group
+        $('#group').on('select2:select', e => {
+            this.selectGroup(e.params.data.id)
+        });
     },
 
     methods: {
