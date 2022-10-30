@@ -19,7 +19,7 @@ const Option = {
                             id="name" 
                             required
                             dir="rtl"
-                            class="block p-3 w-full border-0 border-b border-transparent bg-gray-50 focus:border-indigo-600 focus:ring-0 sm:text-sm" 
+                            class="font-thaana block p-3 w-full border-0 border-b border-transparent bg-gray-50 focus:border-indigo-600 focus:ring-0 sm:text-sm" 
                             placeholder="Subject / title">
                   </div>
                 </div>
@@ -27,7 +27,7 @@ const Option = {
                 <label for="description" class="block text-sm font-medium text-gray-700 text-right">Descriptions</label>
                 <div class="mt-1">
                   <textarea id="description" 
-                  v-model="form.description" dir="rtl" required rows="20" class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-2xl leading-relaxed tracking-wider placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                  v-model="form.description" dir="rtl" required rows="20" class="font-arabic block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-2xl leading-relaxed tracking-wider placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                   placeholder="Descriptions"
                   ></textarea>
                 </div>

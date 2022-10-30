@@ -45,7 +45,7 @@ const Readers = {
     <div class="rounded-lg shadow-lg shadow-white/20 border border-gray-200 border-opacity-40 p-3" :class="{'!border-gray-500': dark}">
      <div class="p-4">
         <div>
-          <p class="text-right leading-snug font-arabic" :class="[fontClass, fontBold]">{{ item.description }}</p>
+            <p class="text-right leading-relaxed font-arabic" :class="[fontClass, fontBold]" v-html="replace(item.description)" />
         </div>
      </div>
      <div class="flex items-center justify-end space-x-3">
@@ -122,7 +122,7 @@ const Readers = {
 
         replace(value) {
             if (value) {
-                return value.split('130').join('<br /><br />')
+                return value.split('\n').join('<br />')
             }
         },
 

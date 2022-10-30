@@ -1,6 +1,7 @@
 const Storage = {
     template: `
     <div class="max-w-3xl mx-auto space-y-5 rounded-lg border bg-white shadow-lg border-gray-100 p-3">
+    <div v-if="success" class="bg-green-200 text-green-700 text-sm p-3 transform rounded-lg shadow-lg text-center border border-green-800">Uploaded Successfully.</div>
      <div class="p-4 bg-gray-100 rounded-lg shadow-lg border">
       <h1 class="mb-3">Upload</h1>
          <form class="space-y-6" @submit.prevent="upload">
@@ -34,7 +35,8 @@ const Storage = {
 
     data() {
         return {
-            file: null
+            file: null,
+            success: false,
         }
     },
     methods: {
@@ -87,7 +89,12 @@ const Storage = {
                 this.uploadOptions(data.items)
             }
 
-            window.location.reload()
+            this.success = true
+
+            setTimeout(() => {
+                window.location.reload()
+            }, 500)
+
         },
 
         downloadFile(filename, text) {
